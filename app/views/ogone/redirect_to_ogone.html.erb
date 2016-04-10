@@ -1,4 +1,4 @@
-<form method="post" action="https://secure.ogone.com/ncol/<%= Rails.env.production? ? 'prod' : 'test' %>>/orderstandard.asp / orderstandard_utf8.asp" id=make_a_donation>
+<form method="post" action="https://secure.ogone.com/ncol/<%= Rails.env.production? ? 'prod' : 'test' %>/orderstandard_utf8.asp" id=make_a_donation>
 
     <!-- general parameters: see Form parameters -->
     <input type="hidden" name="PSPID" value="<%= ENV['PSPID'] %>">
