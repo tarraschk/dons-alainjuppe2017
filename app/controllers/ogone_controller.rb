@@ -15,14 +15,15 @@ class OgoneController < ApplicationController
     end
   end
 
+  def merci
+
+  end
+
   private
-
-
-
 
   def compute_digest
 
-    sha_in_passphrase = 'avpezlyetfidacmohoc0'
+    sha_in_passphrase = ENV['SHAIN']
 
     digest_params = {
         AMOUNT:       params[:amount].to_i * 100,
@@ -51,5 +52,9 @@ class OgoneController < ApplicationController
     Rails.logger.info @digest
     Rails.logger.info
     Rails.logger.info "#####################################"
+  end
+
+  def decrypt_digest
+    sha_out_passphrase = ENV['SHAOUT']
   end
 end
