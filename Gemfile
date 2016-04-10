@@ -54,6 +54,7 @@ gem "rails-backbone"
 gem "formvalidation-rails"
 gem "mailjet"
 
+gem 'rails_12factor'
 #gem 'rack-mini-profiler'
 
 group :development, :test do
