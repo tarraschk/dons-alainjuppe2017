@@ -26,7 +26,7 @@ class OgoneController < ApplicationController
 
     digest_params = {
         AMOUNT:       params[:amount].to_i * 100,
-        CURRENTY:     'EUR',
+        CURRENCY:     'EUR',
         EMAIL:        params[:email],
         LANGUAGE:     'fr_FR',
         ORDERID:      @person.order_id,
@@ -37,8 +37,19 @@ class OgoneController < ApplicationController
         PSPID:        ENV['PSPID']
     }
 
+
     to_sig = digest_params.map {|k, v| "#{k}=#{v}#{sha_in_passphrase}"}.join
 
-    @digest = Digest::SHA256.hexdigest to_sig
+    @digest = Digest::SHA256.hexdigest(to_sig).upcase
+
+    Rails.logger.info "######### PARAMS TO HASH ###########"
+    Rails.logger.info
+    Rails.logger.info digest_params
+    Rails.logger.info
+    Rails.logger.info "######### VALUE HASHED   ###########"
+    Rails.logger.info
+    Rails.logger.info @digest
+    Rails.logger.info
+    Rails.logger.info "#####################################"
   end
 end
