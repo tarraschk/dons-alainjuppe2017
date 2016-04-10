@@ -7,4 +7,8 @@ class Person < ActiveRecord::Base
   validates :city,        presence: true
   validates :zip_code,    presence: true
   validates :phone,       presence: true
+
+  def order_id
+    id + 155326
+  end
 end

@@ -29,7 +29,7 @@ class OgoneController < ApplicationController
         CURRENTY:     'EUR',
         EMAIL:        params[:email],
         LANGUAGE:     'fr_FR',
-        ORDERID:      @person.id,
+        ORDERID:      @person.order_id,
         OWNERADDRESS: params[:address],
         OWNERTELNO:   params[:phone],
         OWNERTOWN:    params[:city],
