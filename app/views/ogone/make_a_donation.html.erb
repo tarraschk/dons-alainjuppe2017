@@ -1,0 +1,13 @@
+<form method="post" action="redirect_to_ogone">
+    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+    <input name="email" placeholder="Email" required="required">
+    <input name="first_name" placeholder="Prénom" required="required">
+    <input name="last_name" placeholder="Nom" required="required">
+    <input name="address" placeholder="Adresse" required="required">
+    <input name="zip_code" placeholder="Code postal" required="required">
+    <input name="city" placeholder="Ville" required="required">
+    <input name="amount" placeholder="Montant du don" required="required">
+    <input name="phone" placeholder="Téléphone" required="required">
+
+    <button>Valider</button>
+</form>

@@ -1,0 +1,53 @@
+$*.gem
+*.rbc
+*.rdb
+*.DS_Store
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/test/tmp/
+/test/version_tmp/
+/tmp/
+/public/system
+/db/*.sqlite3
+/db/schema.rb
+
+# Emacs temporary files
+*~
+# RBEnv ruby version. 
+# It should be included in the repository after the ruby 2.2.3 migration 
+.ruby-version
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+#/doc/
+/rdoc/
+
+## Environment normalisation:
+/.bundle/
+/lib/bundler/man/
+/log
+
+/.idea/
+/vendor/bundle/
+/coverage/
+/spec/tmp
+dump.rdb
+
+# for a library or gem, you might want to ignore these files since the code is
+# intended to run in multiple environments; otherwise, check them in:
+# Gemfile.lock
+# .ruby-version
+# .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+/vendor/assets/components
+
+/config/environment_secret*
+/config/database.yml
+.elasticbeanstalk/

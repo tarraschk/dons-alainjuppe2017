@@ -1,0 +1,40 @@
+<form method="post" action="https://secure.ogone.com/ncol/<%= Rails.env.production? ? 'prod' : 'test' %>>/orderstandard.asp / orderstandard_utf8.asp" id=make_a_donation>
+
+    <!-- general parameters: see Form parameters -->
+    <input type="hidden" name="PSPID" value="<%= ENV['PSPID'] %>">
+    <input type="hidden" name="ORDERID" value="<%= @person.id %>">
+    <input type="hidden" name="AMOUNT" value="<%= params[:amount] %>">
+    <input type="hidden" name="CURRENCY" value="EUR'">
+    <input type="hidden" name="LANGUAGE" value="fr_FR">
+    <input type="hidden" name="EMAIL" value="<%= @person.email %>">
+    <input type="hidden" name="OWNERZIP" value="<%= @person.zip_code %>">
+    <input type="hidden" name="OWNERADDRESS" value="<%= @person.address %>">
+    <input type="hidden" name="OWNERTOWN" value="<%= @person.city %>">
+    <input type="hidden" name="OWNERTELNO" value="<%= @person.phone %>">
+
+    <!-- check before the payment: see Security: Check before the payment -->
+    <input type="hidden" name="SHASIGN" value="<%= @digest %>">
+
+    <% if false %>
+        <!-- layout information: see Look and feel of the payment page -->
+        <input type="hidden" name=Procfile"TITLE" value="">
+        <input type="hidden" name="BGCOLOR" value="">
+        <input type="hidden" name="TXTCOLOR" value="">
+        <input type="hidden" name="TBLBGCOLOR" value="">
+        <input type="hidden" name="TBLTXTCOLOR" value="">
+        <input type="hidden" name="BUTTONBGCOLOR" value="">
+        <input type="hidden" name="BUTTONTXTCOLOR" value="">
+        <input type="hidden" name="LOGO" value="">
+        <input type="hidden" name="FONTTYPE" value="">
+
+        <!-- post payment redirection: see Transaction feedback to the customer -->
+        <input type="hidden" name="ACCEPTURL" value="">
+        <input type="hidden" name="DECLINEURL" value="">
+        <input type="hidden" name="EXCEPTIONURL" value="">
+        <input type="hidden" name="CANCELURL" value="">
+    <% end %>
+
+
+
+    <input type="submit" value="" id=submit2 name=submit2>
+</form>
