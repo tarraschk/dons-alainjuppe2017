@@ -8,7 +8,7 @@ class OgoneController < ApplicationController
 
   def redirect_to_ogone
     person_params = params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone)
-    person_params.merge(donation_type: 'Don en ligne unique', donation_status: 'En attente', donation_amount: params[:amount].to_i)
+    person_params.merge!(donation_type: 'Don en ligne unique', donation_status: 'En attente', donation_amount: params[:amount].to_i)
     @person = Person.create(person_params)
     if @person.errors.any?
       redirect_to :back
