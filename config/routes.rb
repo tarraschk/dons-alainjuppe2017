@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   post 'redirect_to_ogone'  => 'ogone#redirect_to_ogone'
 
-  get 'merci'               => 'ogono#confirmation'
-  get 'don-non-valide'      => 'ogono#denial'
-  get 'erreur'              => 'ogono#error'
-  get 'don-non-abouti'      => 'ogono#cancel'
+  get 'merci'               => 'ogone#confirmation'
+  get 'don-non-valide'      => 'ogone#denial'
+  get 'erreur'              => 'ogone#error'
+  get 'don-non-abouti'      => 'ogone#cancel'
 
   get 'dashboard'           => 'dashboard#dashboard'
   get 'dashboard/people_datatable' => 'dashboard#people_datatable'
