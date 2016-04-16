@@ -1,5 +1,9 @@
 class Person < ActiveRecord::Base
 
+  def find_by_order_id(order_id)
+    find_by(id: order_id - 155326)
+  end
+
   validates :first_name,  presence: true
   validates :last_name,   presence: true
   validates :email,       presence: true

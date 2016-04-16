@@ -1,22 +1,41 @@
 class OgoneController < ApplicationController
 
+  before_action :get_person, only: [:confirmation, :denial, :error, :cancel]
+
   def make_a_donation
     render
   end
 
   def redirect_to_ogone
-    @person = Person.create(params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone))
+    person_params = params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone)
+    person_params.merge(donation_type: 'Don en ligne unique', donation_status: 'En attente', donation_amount: params[:amount].to_i)
+    @person = Person.create(person_params)
     if @person.errors.any?
       redirect_to :back
-      return
     else
       compute_digest
       render
     end
   end
 
-  def merci
+  def confirmation
+    @person.update(donation_status: 'Payé')
+    render
+  end
 
+  def denial
+    @person.update(donation_status: 'Rejeté')
+    render
+  end
+
+  def error
+    @person.update(donation_status: 'Erreur')
+    render
+  end
+
+  def cancel
+    @person.update(donation_status: 'Annulé')
+    render
   end
 
   private
@@ -54,7 +73,16 @@ class OgoneController < ApplicationController
     Rails.logger.info "#####################################"
   end
 
-  def decrypt_digest
+  def check_digest
     sha_out_passphrase = ENV['SHAOUT']
+
+    to_sig = p.sort_by{|k, _v| k}.map {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
+
+    digest = Digest::SHA256.hexdigest(to_sig).upcase
+
+  end
+
+  def get_person
+    @person = Person.find_by_order_id(params[:orderID])
   end
 end

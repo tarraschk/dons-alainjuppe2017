@@ -1,0 +1,33 @@
+
+<table id="datatable" width="100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Mail</th>
+            <th>Code postal</th>
+            <th>Mode de don</th>
+            <th>Statut du don</th>
+            <th>Montant du don</th>
+            <th>Date de création</th>
+        </tr>
+    </thead>
+
+</table>
+
+
+<script type="text/javascript">
+    var table = $('#datatable');
+    table.DataTable({
+        ajax: "<%= dashboard_people_datatable_url %>",
+        pagingType: 'full_numbers',
+        processing: true,
+        serverSide: true,
+        "createdRow" : function( row, data, index ) {
+            // Add identity if it specified
+            row.id = data[0];
+        }
+    });
+
+</script>
