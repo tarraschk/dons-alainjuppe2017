@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
 
   def self.find_by_order_id(order_id)
-    find_by(id: order_id - 155326)
+    find_by(id: order_id.to_i - 155326)
   end
 
   validates :first_name,  presence: true
