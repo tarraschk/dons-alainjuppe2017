@@ -7,15 +7,26 @@ class OgoneController < ApplicationController
   end
 
   def redirect_to_ogone
-    person_params = params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone)
-    person_params.merge!(donation_type: 'Don en ligne unique', donation_status: 'En attente', donation_amount: params[:amount].to_i)
+    person_params = params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone, :donation_type)
+    person_params.merge!(donation_status: 'En attente', donation_amount: params[:amount].to_i)
     @person = Person.create(person_params)
     if @person.errors.any?
       redirect_to :back
     else
-      compute_digest
-      render
+      if params[:donation_type] == 'Don en ligne unique'
+        compute_digest
+        render
+      elsif params[:donation_type] == 'Don en ligne récurrent'
+        redirect_to :back
+      elsif params[:donation_type] == 'Don par chèque'
+        redirect_to don_cheque_path
+        return
+      end
     end
+  end
+
+  def check_donation
+    render
   end
 
   def confirmation
@@ -76,9 +87,19 @@ class OgoneController < ApplicationController
   def check_digest
     sha_out_passphrase = ENV['SHAOUT']
 
-    to_sig = p.sort_by{|k, _v| k}.map {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
+    to_sig = params.sort_by{|k, _v| k}.map {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
 
     digest = Digest::SHA256.hexdigest(to_sig).upcase
+
+    Rails.logger.info "######### PARAMS TO HASH ###########"
+    Rails.logger.info
+    Rails.logger.info params
+    Rails.logger.info
+    Rails.logger.info "######### VALUE HASHED   ###########"
+    Rails.logger.info
+    Rails.logger.info digest
+    Rails.logger.info
+    Rails.logger.info "#####################################"
 
   end
 
