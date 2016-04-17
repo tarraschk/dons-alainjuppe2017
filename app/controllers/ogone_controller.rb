@@ -85,22 +85,31 @@ class OgoneController < ApplicationController
   end
 
   def check_digest
-    sha_out_passphrase = ENV['SHAOUT']
+    sha_out_passphrase  = ENV['SHAOUT']
 
-    to_sig = params.sort_by{|k, _v| k}.map {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
+    to_sig              = params.
+        except('SHASIGN').
+        transform_keys!(&:upcase).
+        sort_by {|k, _v| k}.
+        map     {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
 
     digest = Digest::SHA256.hexdigest(to_sig).upcase
 
-    Rails.logger.info "######### PARAMS TO HASH ###########"
+    Rails.logger.info "#########    PARAMS TO HASH     ###########"
     Rails.logger.info
-    Rails.logger.info params
+    Rails.logger.info params.except('SHASIGN')
     Rails.logger.info
-    Rails.logger.info "######### VALUE HASHED   ###########"
+    Rails.logger.info "#########      VALUE HASHED     ###########"
     Rails.logger.info
     Rails.logger.info digest
     Rails.logger.info
-    Rails.logger.info "#####################################"
+    Rails.logger.info "#########  THEORETICAL HASHED   ###########"
+    Rails.logger.info
+    Rails.logger.info params['SHASIGN']
+    Rails.logger.info
+    Rails.logger.info "###########################################"
 
+    digest == params['SHASIGN']
   end
 
   def get_person
