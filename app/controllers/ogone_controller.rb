@@ -89,7 +89,7 @@ class OgoneController < ApplicationController
     sha_out_passphrase  = ENV['SHAOUT']
 
     to_sig              = params.
-        except('SHASIGN').
+        except('SHASIGN', :controller, :action).
         transform_keys!(&:upcase).
         sort_by {|k, _v| k}.
         map     {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
@@ -98,7 +98,7 @@ class OgoneController < ApplicationController
 
     Rails.logger.info "#########    PARAMS TO HASH     ###########"
     Rails.logger.info
-    Rails.logger.info params.except('SHASIGN')
+    Rails.logger.info params.except('SHASIGN', :controller, :action)
     Rails.logger.info
     Rails.logger.info "#########      VALUE HASHED     ###########"
     Rails.logger.info
