@@ -1,6 +1,7 @@
 class OgoneController < ApplicationController
 
-  before_action :get_person, only: [:confirmation, :denial, :error, :cancel]
+  before_action :get_person,    only: [:confirmation, :denial, :error, :cancel]
+  before_action :check_digest,  only: [:confirmation, :denial, :error, :cancel]
 
   def make_a_donation
     render
