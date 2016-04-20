@@ -110,7 +110,7 @@ class OgoneController < ApplicationController
     Rails.logger.info
     Rails.logger.info "###########################################"
 
-    digest == params['SHASIGN']
+    render :nothing => true, :status => 301 unless digest == params['SHASIGN']
   end
 
   def get_person
