@@ -75,6 +75,8 @@ class OgoneController < ApplicationController
         AMOUNT: 0,
         CURRENCY:     'EUR',
         EMAIL:        params[:email],
+        LANGUAGE:     'fr_FR',
+        ORDERID:      @person.order_id,
         OWNERADDRESS: params[:address],
         OWNERTELNO:   params[:phone],
         OWNERTOWN:    params[:city],
@@ -90,7 +92,8 @@ class OgoneController < ApplicationController
         SUB_PERIOD_NUMBER: 1,
         SUB_PERIOD_UNIT: 'm',
         SUB_STARTDATE: Date.today,
-        SUB_STATUS: 1
+        SUB_STATUS: 1,
+        CN: @person.full_name
     }
   end
 
