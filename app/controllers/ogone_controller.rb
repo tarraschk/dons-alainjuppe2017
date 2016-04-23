@@ -15,10 +15,13 @@ class OgoneController < ApplicationController
       redirect_to :back
     else
       if params[:donation_type] == 'Don en ligne unique'
+        @digest_params = params_for_regular_order
         compute_digest
         render
       elsif params[:donation_type] == 'Don en ligne récurrent'
-        redirect_to :back
+        @digest_params = params_for_subscription_order
+        compute_digest
+        render
       elsif params[:donation_type] == 'Don par chèque'
         redirect_to don_cheque_path
         return
@@ -52,11 +55,8 @@ class OgoneController < ApplicationController
 
   private
 
-  def compute_digest
-
-    sha_in_passphrase = ENV['SHAIN']
-
-    digest_params = {
+  def params_for_regular_order
+    {
         AMOUNT:       params[:amount].to_i * 100,
         CURRENCY:     'EUR',
         EMAIL:        params[:email],
@@ -68,15 +68,43 @@ class OgoneController < ApplicationController
         OWNERZIP:     params[:zip_code],
         PSPID:        ENV['PSPID']
     }
+  end
 
+  def params_for_subscription_order
+    {
+        AMOUNT: 0,
+        CURRENCY:     'EUR',
+        EMAIL:        params[:email],
+        OWNERADDRESS: params[:address],
+        OWNERTELNO:   params[:phone],
+        OWNERTOWN:    params[:city],
+        OWNERZIP:     params[:zip_code],
+        PSPID:        ENV['PSPID'],
+        SUBSCRIPTION_ID: @person.order_id,
+        SUB_AMOUNT: params[:amount].to_i * 100,
+        SUB_COM: "Comment",
+        SUB_COMMENT: 'comment 2',
+        SUB_ENDDATE: Date.new(2016,12,31),
+        SUB_ORDERID: @person.order_id,
+        SUB_PERIOD_MOMENT: 1,
+        SUB_PERIOD_NUMBER: 1,
+        SUB_PERIOD_UNIT: 'm',
+        SUB_STARTDATE: Date.today,
+        SUB_STATUS: 1
+    }
+  end
 
-    to_sig = digest_params.map {|k, v| "#{k}=#{v}#{sha_in_passphrase}"}.join
+  def compute_digest
+
+    sha_in_passphrase = ENV['SHAIN']
+
+    to_sig = @digest_params.map {|k, v| "#{k}=#{v}#{sha_in_passphrase}"}.join
 
     @digest = Digest::SHA256.hexdigest(to_sig).upcase
 
     Rails.logger.info "######### PARAMS TO HASH ###########"
     Rails.logger.info
-    Rails.logger.info digest_params
+    Rails.logger.info @digest_params
     Rails.logger.info
     Rails.logger.info "######### VALUE HASHED   ###########"
     Rails.logger.info
