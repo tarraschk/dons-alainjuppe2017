@@ -135,6 +135,7 @@ class OgoneController < ApplicationController
 
     to_sig              = params.
         except('SHASIGN', :controller, :action).
+        select {|_k, v| v.present?}.
         transform_keys!(&:upcase).
         sort_by {|k, _v| k}.
         map     {|k, v| "#{k}=#{v}#{sha_out_passphrase}"}.join
