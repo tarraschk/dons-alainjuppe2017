@@ -56,6 +56,7 @@ gem "mailjet"
 
 gem 'rails_12factor'
 #gem 'rack-mini-profiler'
+gem 'rack-zippy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
