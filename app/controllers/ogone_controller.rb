@@ -87,6 +87,7 @@ class OgoneController < ApplicationController
   def params_for_subscription_order
     {
         AMOUNT: 0,
+        CN: @person.full_name,
         CURRENCY:     'EUR',
         EMAIL:        params[:email],
         LANGUAGE:     'fr_FR',
@@ -106,8 +107,7 @@ class OgoneController < ApplicationController
         SUB_PERIOD_NUMBER: 1,
         SUB_PERIOD_UNIT: 'm',
         SUB_STARTDATE: Date.today,
-        SUB_STATUS: 1,
-        CN: @person.full_name
+        SUB_STATUS: 1
     }
   end
 
