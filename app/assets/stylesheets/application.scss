@@ -1,0 +1,127 @@
+$brand-primary: rgb(0,40,85);
+$brand-secondary: rgb(228,0,43);
+$navbar-height: 70px;
+$navbar-default-bg: white;
+$nav-link-padding: 0px 0px;
+$navbar-padding-horizontal: 0px;
+$navbar-padding-vertical: 0px;
+$body-bg: $brand-primary;
+$font-family-base: "Montserrat", sans-serif;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.text-white {
+  color: white;
+}
+
+h1 {
+  margin-bottom: 50px;
+}
+
+.panel-heading {
+  h2 {
+    color: dimgray;
+    font-size: 1.5em;
+  }
+}
+.panel {
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
+.panel-body {
+  padding: 5% 10%;
+}
+
+#montants {
+  .btn {
+    margin: 13px 12px 12px 10px;
+    border: medium none;
+    border-radius: 6px;
+    box-shadow: 0 0 6px #ffffff inset;
+    padding: 5% 5%;
+    display: block;
+    text-align: center;
+    vertical-align: center;
+    transition: all 0.3s ease 0s;
+    font-size: 2.5em;
+    width: 28%;
+    min-height: 95px;
+  }
+  .btn.autre{
+    font-size: 0.8em;
+  }
+  .btn.autre:not(.active) {
+    box-shadow: 0 0 6px #000000 inset;
+    background-color: white;
+    border-color: darkgray;
+    color: darkgray;
+  }
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 6px;
+}
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#montant-autre-saisie {
+  color: black;
+  text-align: center;
+}
+
+.btn.active {
+  background-color: #3fa8f4;
+}
+.btn.active:hover {
+  background-color: #3fa8f4;
+}
+.btn:hover:not(.active) {
+  background-color: #296194;
+}
+
+#recap-montant {
+  p {
+    text-align: center;
+    font-size: 0.8em;
+  }
+  .btn {
+    width: 30%;
+    border: medium none;
+  }
+}
+
+.next-step {
+  width: 100% !important;
+  font-size: 2em !important;
+  border: medium none !important;
+}
+
+.panel-red {
+  background-color: $brand-secondary !important;
+  padding: 15px 0px;
+  margin: 0px 0px;
+  h3 {
+    color: white !important;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 0;
+    margin: 0 0 ;
+  }
+}
+
+.engagement-honneur {
+  font-size: 0.8em;
+  text-align: justify;
+}

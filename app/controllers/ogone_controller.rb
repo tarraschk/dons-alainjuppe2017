@@ -8,22 +8,36 @@ class OgoneController < ApplicationController
   end
 
   def redirect_to_ogone
-    person_params = params.permit(:email, :first_name, :last_name, :address, :zip_code, :city, :phone, :donation_type)
-    person_params.merge!(donation_status: 'En attente', donation_amount: params[:amount].to_i)
+    params.require(:civility)
+    params.require(:email)
+    params.require(:first_name)
+    params.require(:last_name)
+    params.require(:address)
+    params.require(:zip_code)
+    params.require(:city)
+    params.require(:phone)
+    params.require(:donation_type)
+    params.require(:amount)
+    person_params = params.permit(:civility, :email, :first_name, :last_name, :address, :zip_code, :city, :phone, :donation_type)
+    person_params.merge!(donation_status: 'En attente', donation_amount: params["amount"].to_i)
     @person = Person.create(person_params)
     if @person.errors.any?
-      redirect_to :back
+      redirect_to make_a_donation
+      return
     else
-      if params[:donation_type] == 'Don en ligne unique'
+      if params["donation_type"] == 'Don en ligne unique'
         @digest_params = params_for_regular_order
         compute_digest
         render
-      elsif params[:donation_type] == 'Don en ligne récurrent'
+      elsif params["donation_type"] == 'Don en ligne récurrent'
         @digest_params = params_for_subscription_order
         compute_digest
         render
-      elsif params[:donation_type] == 'Don par chèque'
+      elsif params["donation_type"] == 'Don par chèque'
         redirect_to don_cheque_path
+        return
+      else
+        render(:json => {}, :status => :forbidden)
         return
       end
     end

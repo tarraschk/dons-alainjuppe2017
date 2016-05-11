@@ -1,20 +1,163 @@
-<form method="post" action="redirect_to_ogone">
-    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-    <input name="email" placeholder="Email" required="required">
-    <input name="first_name" placeholder="Prénom" required="required">
-    <input name="last_name" placeholder="Nom" required="required">
-    <input name="address" placeholder="Adresse" required="required">
-    <input name="zip_code" placeholder="Code postal" required="required">
-    <input name="city" placeholder="Ville" required="required">
-    <input name="amount" placeholder="Montant du don" required="required">
-    <input name="phone" placeholder="Téléphone" required="required">
-    <div>
-        <input type="radio" name="donation_type" value="Don en ligne unique" id="donation_type_unique" required="required">
-        <label for="donation_type_unique">Don en ligne unique</label>
-        <input type="radio" name="donation_type" value="Don en ligne récurrent" id="donation_type_reccurring">
-        <label for="donation_type_reccurring">Don en ligne récurrent</label>
-        <input type="radio" name="donation_type" value="Don par chèque" id="donation_type_check">
-        <label for="donation_type_check">Don par chèque</label>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+  <h1 class="text-white text-center">EXPRIMEZ VOTRE SOUTIEN</h1>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">DONNEZ DÈS MAINTENANT</h2>
     </div>
-    <button>Valider</button>
-</form>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="1-montant">
+        <div class="panel-red">
+          <h3 class="text-center">ETAPE 1/3 : CHOISISSEZ LE MONTANT DE VOTRE DON</h3>
+        </div>
+        <div class="panel-body">
+              <p>Oui, aux côtés d’Alain Juppé, je veux agir pour l’avenir, agir pour la France ! Je veux l’aider à gagner et donne :</p>
+              <div class="multidon">
+                <span class="qty_mini"> </span>
+                <div id="quantities" style="clear:right;">
+                  <div id="montants">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input class="montant" type="radio" name="options" id="montant-20" autocomplete="off" checked> 20€
+                      </label>
+                      <label class="btn btn-primary">
+                        <input class="montant" type="radio" name="options" id="montant-30" autocomplete="off" > 30€
+                      </label>
+                      <label class="btn btn-primary">
+                        <input class="montant" type="radio" name="options" id="montant-60" autocomplete="off" > 60€
+                      </label>
+                      <label class="btn btn-primary">
+                        <input class="montant" type="radio" name="options" id="montant-80" autocomplete="off" > 80€
+                      </label>
+                      <label class="btn btn-primary">
+                        <input class="montant" type="radio" name="options" id="montant-120" autocomplete="off" > 120€
+                      </label>
+                      <label class="btn btn-primary montant autre">
+                        <input class="montant autre" type="radio" name="options" id="montant-autre" autocomplete="off" > Autre<br/>montant<br/><input id="montant-autre-saisie" name="autre_montant" class="montant" type="text" autocomplete="off" value="" min="1" max="3000" maxlength="10" size="10">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div id="recap-montant">
+                  <div class="text-center">
+                    <p>Après réduction d'impôts, votre don de <span>20€</span> vous reviendra à :</p>
+                      <div class="btn btn-primary active">
+                        10.2€
+                      </div>
+                  </div>
+                  <br/>
+                  <a href="#2-coordonnees" aria-controls="2-coordonnees" role="tab" data-toggle="tab">
+                    <button type="button" class="btn btn-primary next-step">DONNER</button>
+                  </a>
+                </div>
+                <hr>
+                <p style="text-align:center;font-size:14px;"> Merci de votre soutien </p>
+                <hr>
+                <p style="text-align:center;font-size:9px;line-height:14px;">
+                  Votre don vous donne droit à une réduction annuelle d'impôt sur le revenu
+                  <br>
+                  à hauteur de 66% de son montant, dans la double limite de 20% du revenu
+                  <br>
+                  imposable et de 15 000 € par foyer fiscal.
+                </p>
+              </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="2-coordonnees">
+          <div class="panel-red">
+            <h3 class="text-center">ETAPE 2/3 : INDIQUEZ VOS COORDONNEES</h3>
+          </div>
+          <div class="panel-body">
+            <form method="post" action="redirect_to_ogone" class="form-horizontal">
+              <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+              <div class="form-group">
+                <label for="civility" class="col-xs-4 control-label">Civilité :</label>
+                <div class="col-xs-8">
+                  <label class="radio-inline">
+                    <input type="radio" name="civility" id="civility-mr" value="mr" required="required"> M.
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="civility" id="civility-mme" value="mme" required="required"> Mme
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="last_name" class="col-xs-4 control-label">Nom :</label>
+                <div class="col-xs-8">
+                  <input name="last_name" placeholder="Nom" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="first_name" class="col-xs-4 control-label">Prénom :</label>
+                <div class="col-xs-8">
+                  <input name="first_name" placeholder="Prénom" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="address" class="col-xs-4 control-label">Adresse :</label>
+                <div class="col-xs-8">
+                  <input name="address" placeholder="Adresse" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="zicode" class="col-xs-4 control-label">Code postal :</label>
+                <div class="col-xs-8">
+                  <input name="zip_code" placeholder="Code postal" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="city" class="col-xs-4 control-label">Ville :</label>
+                <div class="col-xs-8">
+                  <input name="city" placeholder="Ville" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="col-xs-4 control-label">Adresse mail :</label>
+                <div class="col-xs-8">
+                  <input name="email" placeholder="Adresse mail" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="col-xs-4 control-label">Téléphone :</label>
+                <div class="col-xs-8">
+                  <input name="phone" placeholder="Téléphone" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="amount" class="col-xs-4 control-label">Montant du don :</label>
+                <div class="col-xs-8">
+                  <input name="amount" placeholder="Montant du don" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="donation_type" class="col-xs-4 control-label">Type de don :</label>
+                <div class="col-xs-8">
+                  <label class="radio">
+                    <input type="radio" name="donation_type" value="Don en ligne unique" id="donation_type_unique" required="required" checked="checked">Don unique (paiement en ligne)
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="donation_type" value="Don en ligne récurrent" id="donation_type_reccurring">Don mensuel (paiement en ligne)
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="donation_type" value="Don par chèque" id="donation_type_check">Don par chèque
+                  </label>
+                </div>
+              </div>
+
+              <div id="engagement-honneur" class="checkbox">
+                <label>
+                  <input type="checkbox" required="required"> <p class="engagement-honneur">Je certifie sur l’honneur être une personne physique de nationalité française, que conformément à la loi N°95-65 du 19 janvier 1995 relative au financement de la vie politique, le règlement de mon don ne provient pas d’une personne morale (société, association, société civile, …) mais de mon compte bancaire personnel et que je respecte le plafond annuel de 7500€ de dons et cotisations aux formations politiques conformément à l’article 11-4 de la loi n°88-227 du 11 mars 1988.</p>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary next-step">VALIDER</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="hidden-xs hidden-sm col-md-6 col-lg-6">
+  <%= image_tag('alain-juppe-bg.jpg', style: 'right: 76px;height: 70%;') %>
+</div>
