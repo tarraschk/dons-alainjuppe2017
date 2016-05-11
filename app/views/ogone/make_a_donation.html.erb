@@ -19,19 +19,19 @@
                   <div id="montants">
                     <div class="btn-group" data-toggle="buttons">
                       <label class="btn btn-primary active">
-                        <input class="montant" type="radio" name="options" id="montant-20" autocomplete="off" checked> 20€
+                        <input class="montant" type="radio" name="options" id="montant-20" data-montant="20" autocomplete="off" checked> 20€
                       </label>
                       <label class="btn btn-primary">
-                        <input class="montant" type="radio" name="options" id="montant-30" autocomplete="off" > 30€
+                        <input class="montant" type="radio" name="options" id="montant-30" data-montant="30" autocomplete="off" > 30€
                       </label>
                       <label class="btn btn-primary">
-                        <input class="montant" type="radio" name="options" id="montant-60" autocomplete="off" > 60€
+                        <input class="montant" type="radio" name="options" id="montant-60" data-montant="60" autocomplete="off" > 60€
                       </label>
                       <label class="btn btn-primary">
-                        <input class="montant" type="radio" name="options" id="montant-80" autocomplete="off" > 80€
+                        <input class="montant" type="radio" name="options" id="montant-80" data-montant="80" autocomplete="off" > 80€
                       </label>
                       <label class="btn btn-primary">
-                        <input class="montant" type="radio" name="options" id="montant-120" autocomplete="off" > 120€
+                        <input class="montant" type="radio" name="options" id="montant-120" data-montant="120" autocomplete="off" > 120€
                       </label>
                       <label class="btn btn-primary montant autre">
                         <input class="montant autre" type="radio" name="options" id="montant-autre" autocomplete="off" > Autre<br/>montant<br/><input id="montant-autre-saisie" name="autre_montant" class="montant" type="text" autocomplete="off" value="" min="1" max="3000" maxlength="10" size="10">
@@ -42,9 +42,9 @@
                 <br/>
                 <div id="recap-montant">
                   <div class="text-center">
-                    <p>Après réduction d'impôts, votre don de <span>20€</span> vous reviendra à :</p>
-                      <div class="btn btn-primary active">
-                        10.2€
+                    <p>Après réduction d'impôts, votre don de <span class="montant-don">20€</span> vous reviendra à :</p>
+                      <div class="btn btn-primary active montant-don-reduit">
+                        6.80€
                       </div>
                   </div>
                   <br/>
@@ -128,7 +128,8 @@
               <div class="form-group">
                 <label for="amount" class="col-xs-4 control-label">Montant du don :</label>
                 <div class="col-xs-8">
-                  <input name="amount" placeholder="Montant du don" required="required" class="form-control">
+                  <input name="amount" placeholder="Montant du don" required="required" class="form-control montant-don" value="20" readonly>
+                  <span class="form-control-feedback" aria-hidden="true" style="right:10px;">€</span>
                 </div>
               </div>
               <div class="form-group">
@@ -138,7 +139,7 @@
                     <input type="radio" name="donation_type" value="Don en ligne unique" id="donation_type_unique" required="required" checked="checked">Don unique (paiement en ligne)
                   </label>
                   <label class="radio">
-                    <input type="radio" name="donation_type" value="Don en ligne récurrent" id="donation_type_reccurring">Don mensuel (paiement en ligne)
+                    <input type="radio" name="donation_type" value="Don en ligne récurrent" id="donation_type_reccurring" disabled><del>Don mensuel (paiement en ligne)</del>
                   </label>
                   <label class="radio">
                     <input type="radio" name="donation_type" value="Don par chèque" id="donation_type_check">Don par chèque

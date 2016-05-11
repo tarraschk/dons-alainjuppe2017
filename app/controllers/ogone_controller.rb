@@ -63,7 +63,7 @@ class OgoneController < ApplicationController
   end
 
   def cancel
-    @person.update(donation_status: 'Annulé')
+    #@person.update(donation_status: 'Annulé')
     render
   end
 
@@ -155,7 +155,7 @@ class OgoneController < ApplicationController
     Rails.logger.info
     Rails.logger.info "###########################################"
 
-    render :nothing => true, :status => 301 unless digest == params['SHASIGN']
+    #render :nothing => true, :status => 301 unless digest == params['SHASIGN']
   end
 
   def get_person
