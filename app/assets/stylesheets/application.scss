@@ -60,6 +60,14 @@ h1 {
   }
 }
 
+@media (max-width: 768px) {
+  #montants {
+    .btn {
+      width: 40% !important;
+    }
+  }
+}
+
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 6px;
 }
