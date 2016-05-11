@@ -86,7 +86,7 @@ class OgoneController < ApplicationController
 
   def params_for_subscription_order
     {
-        AMOUNT: 0,
+        AMOUNT: params[:amount].to_i * 100,
         CN: @person.full_name,
         CURRENCY:     'EUR',
         EMAIL:        params[:email],
@@ -99,8 +99,8 @@ class OgoneController < ApplicationController
         PSPID:        ENV['PSPID'],
         SUBSCRIPTION_ID: @person.order_id,
         SUB_AMOUNT: params[:amount].to_i * 100,
-        SUB_COM: "Comment",
-        SUB_COMMENT: 'comment 2',
+        SUB_COM: "DonCapajRecurrent",
+        SUB_COMMENT: 'DonCapajRecurrent',
         SUB_ENDDATE: Date.new(2016,11,30),
         SUB_ORDERID: @person.order_id,
         SUB_PERIOD_MOMENT: 5,
