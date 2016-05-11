@@ -1,33 +1,45 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<table id="datatable" width="100%">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Mail</th>
-            <th>Code postal</th>
-            <th>Mode de don</th>
-            <th>Statut du don</th>
-            <th>Montant du don</th>
-            <th>Date de création</th>
-        </tr>
-    </thead>
+  <h1 class="text-white text-center">Administration des donateurs</h1>
 
-</table>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">Historique des dons</h2>
+    </div>
+    <div class="panel-body" style="padding: 1% 1%;">
+      <div class="table-responsive">
+        <table id="datatable" class="table table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Mail</th>
+                    <th>Code postal</th>
+                    <th>Mode de don</th>
+                    <th>Statut du don</th>
+                    <th>Montant du don</th>
+                    <th>Date de création</th>
+                </tr>
+            </thead>
 
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script type="text/javascript">
-    var table = $('#datatable');
-    table.DataTable({
-        ajax: "<%= dashboard_people_datatable_url %>",
-        pagingType: 'full_numbers',
-        processing: true,
-        serverSide: true,
-        "createdRow" : function( row, data, index ) {
-            // Add identity if it specified
-            row.id = data[0];
-        }
-    });
+    <script type="text/javascript">
+        var table = $('#datatable');
+        table.DataTable({
+            ajax: "<%= dashboard_people_datatable_url %>",
+            pagingType: 'full_numbers',
+            processing: true,
+            serverSide: true,
+            "createdRow" : function( row, data, index ) {
+                // Add identity if it specified
+                row.id = data[0];
+            }
+        });
 
-</script>
+    </script>
