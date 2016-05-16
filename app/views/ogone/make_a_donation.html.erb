@@ -18,14 +18,14 @@
                 <div id="quantities" style="clear:right;">
                   <div id="montants">
                     <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-primary active">
-                        <input class="montant" type="radio" name="options" id="montant-20" data-montant="20" autocomplete="off" checked> 20€
+                      <label class="btn btn-primary">
+                        <input class="montant" type="radio" name="options" id="montant-20" data-montant="20" autocomplete="off" > 20€
                       </label>
                       <label class="btn btn-primary">
                         <input class="montant" type="radio" name="options" id="montant-30" data-montant="30" autocomplete="off" > 30€
                       </label>
-                      <label class="btn btn-primary">
-                        <input class="montant" type="radio" name="options" id="montant-60" data-montant="60" autocomplete="off" > 60€
+                      <label class="btn btn-primary active">
+                        <input class="montant" type="radio" name="options" id="montant-60" data-montant="60" autocomplete="off" checked> 60€
                       </label>
                       <label class="btn btn-primary">
                         <input class="montant" type="radio" name="options" id="montant-80" data-montant="80" autocomplete="off" > 80€
@@ -42,9 +42,9 @@
                 <br/>
                 <div id="recap-montant">
                   <div class="text-center">
-                    <p>Après réduction d'impôts, votre don de <span class="montant-don">20€</span> vous reviendra à :</p>
+                    <p>Après réduction d'impôts, votre don de <span class="montant-don">60€</span> vous reviendra à :</p>
                       <div class="btn btn-primary active montant-don-reduit">
-                        6.80€
+                        20.40€
                       </div>
                   </div>
                   <br/>
@@ -128,7 +128,7 @@
               <div class="form-group">
                 <label for="amount" class="col-xs-4 control-label">Montant du don :</label>
                 <div class="col-xs-8">
-                  <input name="amount" placeholder="Montant du don" required="required" class="form-control montant-don" value="20" readonly>
+                  <input name="amount" placeholder="Montant du don" required="required" class="form-control montant-don" value="60" readonly>
                   <span class="form-control-feedback" aria-hidden="true" style="right:10px;">€</span>
                 </div>
               </div>
