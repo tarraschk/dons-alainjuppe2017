@@ -101,7 +101,7 @@ class OgoneController < ApplicationController
         SUB_AMOUNT: params[:amount].to_i * 100,
         SUB_COM: "DonCapajRecurrent",
         SUB_COMMENT: 'DonCapajRecurrent',
-        SUB_ENDDATE: Date.new(2016,11,30),
+        SUB_ENDDATE: Date.new(2016,12,31),
         SUB_ORDERID: @person.order_id,
         SUB_PERIOD_MOMENT: 5,
         SUB_PERIOD_NUMBER: 1,
