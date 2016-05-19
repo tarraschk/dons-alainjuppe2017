@@ -80,7 +80,8 @@ class OgoneController < ApplicationController
         OWNERTELNO:   params[:phone],
         OWNERTOWN:    params[:city],
         OWNERZIP:     params[:zip_code],
-        PSPID:        ENV['PSPID']
+        PSPID:        ENV['PSPID'],
+        TP:           'template.html'
     }
   end
 
@@ -107,7 +108,8 @@ class OgoneController < ApplicationController
         SUB_PERIOD_NUMBER: 1,
         SUB_PERIOD_UNIT: 'm',
         SUB_STARTDATE: Date.today,
-        SUB_STATUS: 1
+        SUB_STATUS: 1,
+        TP:           'template.html'
     }
   end
 
