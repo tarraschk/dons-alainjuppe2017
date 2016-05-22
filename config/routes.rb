@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   post 'redirect_to_ogone'          => 'ogone#redirect_to_ogone'
 
-  get 'merci'                       => 'ogone#confirmation'
-  get 'don-non-valide'              => 'ogone#denial'
-  get 'erreur'                      => 'ogone#error'
-  get 'don-non-abouti'              => 'ogone#cancel'
+  get 'merci'                       => 'ogone_notifications#confirmation'
+  get 'don-non-valide'              => 'ogone_notifications#denial'
+  get 'erreur'                      => 'ogone_notifications#error'
+  get 'don-non-abouti'              => 'ogone_notifications#cancel'
   post 'ogone_notifications/notify' => 'ogone_notifications#notify'
 
   get 'dashboard'                   => 'dashboard#dashboard'
