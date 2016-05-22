@@ -6,6 +6,6 @@ class OgoneNotification < ActiveRecord::Base
   end
 
   def apply
-
+    person.update(status: self.status)
   end
 end
