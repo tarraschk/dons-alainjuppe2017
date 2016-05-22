@@ -1,7 +1,9 @@
 class Person < ActiveRecord::Base
 
+  OFFSET = 155326
+
   def self.find_by_order_id(order_id)
-    find_by(id: order_id.to_i - 155326)
+    find_by(id: order_id.to_i - OFFSET)
   end
 
   validates :first_name,  presence: true
@@ -13,7 +15,7 @@ class Person < ActiveRecord::Base
   validates :phone,       presence: true
 
   def order_id
-    id + 155326
+    id + OFFSET
   end
 
   def full_name

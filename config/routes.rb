@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'don-non-valide'              => 'ogone#denial'
   get 'erreur'                      => 'ogone#error'
   get 'don-non-abouti'              => 'ogone#cancel'
+  post 'ogone_notifications/notify' => 'ogone_notifications#notify'
 
   get 'dashboard'                   => 'dashboard#dashboard'
   get 'dashboard/people_datatable'  => 'dashboard#people_datatable'
