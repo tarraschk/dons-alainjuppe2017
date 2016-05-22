@@ -1,7 +1,6 @@
 class OgoneController < ApplicationController
 
   before_action :get_person,    only: [:confirmation, :denial, :error, :cancel]
-  before_action :check_digest,  only: [:confirmation, :denial, :error, :cancel]
 
   def make_a_donation
     render
@@ -44,26 +43,6 @@ class OgoneController < ApplicationController
   end
 
   def check_donation
-    render
-  end
-
-  def confirmation
-    @person.update(donation_status: 'Payé')
-    render
-  end
-
-  def denial
-    @person.update(donation_status: 'Rejeté')
-    render
-  end
-
-  def error
-    @person.update(donation_status: 'Erreur')
-    render
-  end
-
-  def cancel
-    @person.update(donation_status: 'Annulé')
     render
   end
 

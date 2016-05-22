@@ -1,12 +1,19 @@
 class OgoneNotificationsController < OgoneController
   before_action :check_digest
+  before_action :update_person, only: [:confirmation, :denial, :error, :cancel]
 
   skip_before_filter  :verify_authenticity_token
 
   def notify
     created = OgoneNotification.create(order_id: params[:orderID], message: params.to_json, status: params[:STATUS])
-    render 204 and return if created
-    render 422
+    render status: 204 and return if created
+    render status: 422
+  end
+
+  private
+
+  def update_person
+    @person.update(status: params[:STATUS])
   end
 
 end
