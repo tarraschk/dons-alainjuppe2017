@@ -6,8 +6,8 @@ class OgoneNotificationsController < OgoneController
 
   def notify
     created = OgoneNotification.create(order_id: params[:orderID], message: params.to_json, status: params[:STATUS])
-    render status: 204 and return if created
-    render status: 422
+    render status: 204, nothing: true and return if created
+    render status: 422, nothing: true
   end
 
   private
