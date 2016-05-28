@@ -24,15 +24,15 @@ class OgoneController < ApplicationController
       redirect_to make_a_donation
       return
     else
-      if params["donation_type"] == 'Don en ligne unique'
+      if params["donation_type"] == Person::DONATION_TYPE::ONE_TIME_ONLINE
         @digest_params = params_for_regular_order
         compute_digest
         render
-      elsif params["donation_type"] == 'Don en ligne récurrent'
+      elsif params["donation_type"] == Person::DONATION_TYPE::RECURRING_ONLINE
         @digest_params = params_for_subscription_order
         compute_digest
         render
-      elsif params["donation_type"] == 'Don par chèque'
+      elsif params["donation_type"] == Person::DONATION_TYPE::CHECK
         redirect_to don_cheque_path
         return
       else

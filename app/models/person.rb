@@ -1,5 +1,10 @@
 class Person < ActiveRecord::Base
 
+  class DONATION_TYPE
+    CHECK             = 'Don par chèque'
+    ONE_TIME_ONLINE   = 'Don en ligne unique'
+    RECURRING_ONLINE  = 'Don en ligne récurrent'
+  end
   OFFSET = 155326
 
   def self.find_by_order_id(order_id)
@@ -58,10 +63,20 @@ class Person < ActiveRecord::Base
         'Capture du don incertain'
       when 93
         'Capture du don refusé'
+      when 100
+        'Chèque reçu'
       when nil
         'En attente'
       else
         raise "Statut indéterminé #{status}"
+    end
+  end
+
+  def donation_status_with_button_for_datatable
+    if donation_type == DONATION_TYPE::CHECK && donation_status == 'En attente'
+        "<button class='set_payment_done'>Don reçu</button>"
+    else
+        donation_status
     end
   end
 end

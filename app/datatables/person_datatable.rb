@@ -23,7 +23,7 @@ class PersonDatatable < AjaxDatatablesRails::Base
         record.email,
         record.zip_code,
         record.donation_type,
-        record.donation_status,
+        record.donation_status_with_button_for_datatable,
         record.donation_amount,
         record.created_at.strftime('%d/%m/%Y %H:%M'),
       ]
