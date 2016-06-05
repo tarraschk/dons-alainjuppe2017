@@ -83,9 +83,9 @@ class OgoneController < ApplicationController
         SUB_COMMENT: 'DonCapajRecurrent',
         SUB_ENDDATE: Date.new(2016,12,31),
         SUB_ORDERID: @person.order_id,
-        SUB_PERIOD_MOMENT: 5,
+        #SUB_PERIOD_MOMENT: 5,
         SUB_PERIOD_NUMBER: 1,
-        SUB_PERIOD_UNIT: 'm',
+        SUB_PERIOD_UNIT: 'd',
         SUB_STARTDATE: Date.today,
         SUB_STATUS: 1,
         TP:           'template.html'
