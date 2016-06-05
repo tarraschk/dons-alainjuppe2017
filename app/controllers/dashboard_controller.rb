@@ -18,4 +18,9 @@ class DashboardController < ApplicationController
       format.json { render json: PersonDatatable.new(view_context) }
     end
   end
+
+  def set_donation_received
+    Person.find(params[:id]).update(status: 100)
+    render json: {done: 'ok'}
+  end
 end
