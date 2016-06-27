@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get 'dashboard/people_datatable'        => 'dashboard#people_datatable'
   post 'dashboard/set_donation_received'  => 'dashboard#set_donation_received'
 
+  get '/.well-known/acme-challenge/:id'   => 'pages#letsencrypt'
 
 end
