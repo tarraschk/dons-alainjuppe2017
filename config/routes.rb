@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
+  get '/.well-known/acme-challenge/:LE_HTTP_CHALLENGE_RESPONSE_BEGIN' => 'pages#letsencrypt'
   root 'ogone#make_a_donation'
 
   get 'don_cheque'                        => 'ogone#check_donation'

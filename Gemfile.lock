@@ -161,8 +161,6 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack-zippy (4.0.0)
-      actionpack (~> 4.2.4)
     rails (4.2.5)
       actionmailer (= 4.2.5)
       actionpack (= 4.2.5)
@@ -281,7 +279,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   puma
-  rack-zippy
   rails (= 4.2.5)
   rails-backbone
   rails_12factor
