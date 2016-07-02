@@ -77,6 +77,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  #Enable SSL
-  config.force_ssl = false
+  #SSL
+  config.force_ssl = ENV['ssl_enable']
 end
