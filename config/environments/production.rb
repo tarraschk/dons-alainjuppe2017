@@ -78,5 +78,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #Enable SSL
-  config.force_ssl = true
+  config.force_ssl = false
 end
