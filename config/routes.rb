@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   get 'dashboard'                         => 'dashboard#dashboard'
   get 'dashboard/people_datatable'        => 'dashboard#people_datatable'
   post 'dashboard/set_donation_received'  => 'dashboard#set_donation_received'
-
-  constraints subdomain: "dons" do
-    get "/" => redirect { |params| "https://don.alainjuppe2017.fr" }
-  end
+  
 
 end
