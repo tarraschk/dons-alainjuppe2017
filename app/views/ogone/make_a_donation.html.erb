@@ -139,9 +139,11 @@
                     <label class="btn btn-primary btn-don active" style="width:100%;">
                       <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::ONE_TIME_ONLINE %>" id="donation_type_unique" autocomplete="off" required="required" checked="checked"> Don unique<br/><small>(paiement en ligne)</small>
                     </label>
+                    <span style="left: -40px;position: absolute;top: 43%;">OU</span>
                     <label class="btn btn-primary btn-don" style="width:100%;">
                       <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::RECURRING_ONLINE %>" id="donation_type_reccurring" autocomplete="off"><i class="glyphicon glyphicon-star"></i> DON MENSUEL<br/><small>(paiement en ligne)</small>
                     </label>
+                    <span style="left: -40px;position: absolute;top: 75%;">OU</span>
                     <label class="btn btn-primary btn-don" style="width:100%;">
                       <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::CHECK %>" id="donation_type_check" autocomplete="off"> Don par chèque<br/><small>(envoi par courrier)</small>
                     </label>
