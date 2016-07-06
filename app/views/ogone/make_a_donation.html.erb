@@ -135,15 +135,17 @@
               <div class="form-group">
                 <label for="donation_type" class="col-xs-4 control-label">Type de don :</label>
                 <div class="col-xs-8">
-                  <label class="radio">
-                    <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::ONE_TIME_ONLINE %>" id="donation_type_unique" required="required" checked="checked">Don unique (paiement en ligne)
-                  </label>
-                  <label class="radio">
-                    <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::RECURRING_ONLINE %>" id="donation_type_reccurring">Don mensuel (paiement en ligne)
-                  </label>
-                  <label class="radio">
-                    <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::CHECK %>" id="donation_type_check">Don par chèque
-                  </label>
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active" style="width:100%;">
+                      <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::ONE_TIME_ONLINE %>" id="donation_type_unique" autocomplete="off" required="required" checked="checked"> Don unique<br/>(paiement en ligne)
+                    </label>
+                    <label class="btn btn-primary" style="width:100%;">
+                      <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::RECURRING_ONLINE %>" id="donation_type_reccurring" autocomplete="off"> Don mensuel<br/>(paiement en ligne)
+                    </label>
+                    <label class="btn btn-primary" style="width:100%;">
+                      <input type="radio" name="donation_type" value="<%= Person::DONATION_TYPE::CHECK %>" id="donation_type_check" autocomplete="off"> Don par chèque<br/>(envoi par courrier)
+                    </label>
+                  </div>
                 </div>
               </div>
 
