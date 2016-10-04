@@ -1,6 +1,7 @@
 class OgoneNotificationsController < OgoneController
   before_action :check_digest
   before_action :update_person, only: [:confirmation, :denial, :error, :cancel]
+  before_action :envoi_mail, only: [:confirmation]
 
   skip_before_filter  :verify_authenticity_token
 
@@ -16,7 +17,7 @@ class OgoneNotificationsController < OgoneController
     @person.update(status: params[:STATUS])
   end
 
-  def confirmation
+  def envoi_mail
     puts '*** ENVOI DE MAIL ***'
     puts params[:orderID]
     if (ogone_notif = OgoneNotification.find_by(order_id: params[:orderID])) && (ogone_notif.person)
