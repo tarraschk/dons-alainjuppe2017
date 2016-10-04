@@ -17,9 +17,12 @@ class OgoneNotificationsController < OgoneController
   end
 
   def confirmation
+    puts '*** ENVOI DE MAIL ***'
     if (ogone_notif = OgoneNotification.find_by(order_id: params[:orderID])) && (ogone_notif.person)
-      ApplicationMailer::mail_remerciement(ogone_notif.person.email)
+      mail = ApplicationMailer::mail_remerciement(ogone_notif.person.email)
     end
+    puts ogone_notif
+    puts mail
   end
 
 end
