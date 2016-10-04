@@ -4,58 +4,80 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="text-center">Historique des dons</h2>
+      <h2 class="text-center">Export donateurs</h2>
+    </div>
+    <div class="panel-body" style="padding: 1% 1%;">
+      <p class="text-center">Le fichier des donateurs est mis à jour chaque début de semaine. Pour le télécharger, cliquer ci-dessous :</p>
+      <div class="text-center">
+        <a href="https://www.dropbox.com/s/plkm8owwb03vr7k/SyntheseDonsJuppe.xlsx?dl=0" target="_blank"><button type="button" class="btn btn-primary">TÉLÉCHARGER LE DERNIER RAPPORT DE DONS</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">Liste des dons par chèque</h2>
     </div>
     <div class="panel-body" style="padding: 1% 1%;">
       <div class="table-responsive">
         <table id="datatable" class="table table-condensed table-responsive">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Mail</th>
-                    <th>Code postal</th>
-                    <th>Mode de don</th>
-                    <th>Statut du don</th>
-                    <th>Montant du don</th>
-                    <th>Date de création</th>
-                </tr>
-            </thead>
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Mail</th>
+            <th>Code postal</th>
+            <th>Statut du don</th>
+            <th>Montant du don</th>
+            <th>Date de création</th>
+          </tr>
+          </thead>
 
         </table>
-      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="text-center">Support technique</h2>
+    </div>
+    <div class="panel-body" style="padding: 1% 1%;">
+      <p class="text-center">Pour toute question d'ordre technique, veuillez vous adresser à <a href="mailto:malayeddine+supportdons@alainjuppe2017.fr">malayeddine@alainjuppe2017.fr</a></p>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-    var table = $('#datatable');
-    table.DataTable({
-        ajax: "<%= dashboard_people_datatable_url %>",
-        pagingType: 'full_numbers',
-        processing: true,
-        serverSide: true,
-        "createdRow" : function( row, data, index ) {
-            // Add identity if it specified
-            row.id = data[0];
-        },
-        "drawCallback": function(settings) {
-            $('.set_payment_done').unbind().click(function(e){
-                var id = e.target.parentNode.parentNode.id;
-                e.target.parentElement.innerHTML = '...';
-                $.ajax({
-                    url: '/dashboard/set_donation_received',
-                    type: 'POST',
-                    data: {id: id},
-                    success: function(){
-                        table.DataTable().ajax.reload(null, false);
-                    }
-                })
-            })
+  var table = $('#datatable');
+  table.DataTable({
+    ajax: "<%= dashboard_people_datatable_url %>",
+    pagingType: 'full_numbers',
+    processing: true,
+    serverSide: true,
+    oLanguage: {
+      sSearch: "Rechercher (nom, prénom, code postal...) : "
+    },
+    "createdRow" : function( row, data, index ) {
+      // Add identity if it specified
+      row.id = data[0];
+    },
+    "drawCallback": function(settings) {
+      $('.set_payment_done').unbind().click(function(e){
+        var id = e.target.parentNode.parentNode.id;
+        e.target.parentElement.innerHTML = '...';
+        $.ajax({
+          url: '/dashboard/set_donation_received',
+          type: 'POST',
+          data: {id: id},
+          success: function(){
+            table.DataTable().ajax.reload(null, false);
+          }
+        })
+      })
 
-        }
-    });
+    }
+  });
 
 
 </script>

@@ -13,10 +13,7 @@ class DashboardController < ApplicationController
   end
 
   def people_datatable
-    respond_to do |format|
-      format.html
-      format.json { render json: PersonDatatable.new(view_context) }
-    end
+    render json: PersonDatatable.new(view_context)
   end
 
   def set_donation_received

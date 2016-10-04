@@ -4,12 +4,12 @@ class PersonDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w(Person.id Person.first_name Person.last_name Person.email Person.tags Person.created_at)
+    @sortable_columns ||= %w(Person.id Person.first_name Person.last_name Person.email Person.zip_code Person.created_at)
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= %w(Person.first_name Person.last_name Person.email Person.tags Person.created_at)
+    @searchable_columns ||= %w(Person.first_name Person.last_name Person.email Person.zip_code Person.created_at)
   end
 
   private
@@ -22,7 +22,6 @@ class PersonDatatable < AjaxDatatablesRails::Base
         record.last_name,
         record.email,
         record.zip_code,
-        record.donation_type,
         record.donation_status_with_button_for_datatable,
         record.donation_amount,
         record.created_at.strftime('%d/%m/%Y %H:%M'),
@@ -31,7 +30,7 @@ class PersonDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    Person.all
+    Person.where(donation_type: Person::DONATION_TYPE::CHECK).order(created_at: :desc)
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
