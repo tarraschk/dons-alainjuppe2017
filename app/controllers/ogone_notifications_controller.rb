@@ -16,4 +16,10 @@ class OgoneNotificationsController < OgoneController
     @person.update(status: params[:STATUS])
   end
 
+  def confirmation
+    if (ogone_notif = OgoneNotification.find_by(order_id: params[:orderID])) && (ogone_notif.person)
+      ApplicationMailer::mail_remerciement(ogone_notif.person.email)
+    end
+  end
+
 end
