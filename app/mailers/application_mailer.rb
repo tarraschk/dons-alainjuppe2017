@@ -10,7 +10,7 @@ class ApplicationMailer < ActionMailer::Base
     end
 
     # Body
-    content_text  = 'Chère amie, cher ami,\n \\'
+    content_text  = 'Chère amie, cher ami,\n'
     content_text += '\n'
     content_text += 'Nous avons bien reçu votre don. Merci pour votre soutien.\n'
     content_text += '\n'
