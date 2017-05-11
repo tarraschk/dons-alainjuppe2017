@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
 
   def basic_authentication
     authenticate_or_request_with_http_basic do |username, password|
-      username == 'admin' &&
-          password == 'AJa1ss2d!'
+      username == ENV['BASIC_AUTH_USERNAME'] &&
+          password == ENV['BASIC_AUTH_PASSWORD']
     end
   end
 

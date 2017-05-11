@@ -22,7 +22,6 @@ class OgoneController < ApplicationController
     @person = Person.create(person_params)
     if @person.errors.any?
       redirect_to make_a_donation
-      return
     else
       if params["donation_type"] == Person::DONATION_TYPE::ONE_TIME_ONLINE
         @digest_params = params_for_regular_order
@@ -34,10 +33,9 @@ class OgoneController < ApplicationController
         render
       elsif params["donation_type"] == Person::DONATION_TYPE::CHECK
         redirect_to don_cheque_path
-        return
       else
-        render(:json => {}, :status => :forbidden)
-        return
+        render json: {},
+               status: :forbidden
       end
     end
   end
@@ -66,29 +64,29 @@ class OgoneController < ApplicationController
 
   def params_for_subscription_order
     {
-        AMOUNT: params[:amount].to_i * 100,
-        CN: @person.full_name,
-        CURRENCY:     'EUR',
-        EMAIL:        params[:email],
-        LANGUAGE:     'fr_FR',
-        ORDERID:      @person.order_id,
-        OWNERADDRESS: params[:address],
-        OWNERTELNO:   params[:phone],
-        OWNERTOWN:    params[:city],
-        OWNERZIP:     params[:zip_code],
-        PSPID:            ENV['PSPID'],
-        SUBSCRIPTION_ID:  @person.order_id,
-        SUB_AMOUNT:       params[:amount].to_i * 100,
-        SUB_COM:          "DonCapajRecurrent",
-        SUB_COMMENT:      'DonCapajRecurrent',
-        SUB_ENDDATE: Date.new(2016,12,31),
-        SUB_ORDERID: @person.order_id,
-        SUB_PERIOD_MOMENT: 5,
-        SUB_PERIOD_NUMBER: 1,
-        SUB_PERIOD_UNIT: 'm',
-        SUB_STARTDATE: Date.today,
-        SUB_STATUS: 1,
-        TP:           'template.html'
+        AMOUNT:             params[:amount].to_i * 100,
+        CN:                 @person.full_name,
+        CURRENCY:           'EUR',
+        EMAIL:              params[:email],
+        LANGUAGE:           'fr_FR',
+        ORDERID:            @person.order_id,
+        OWNERADDRESS:       params[:address],
+        OWNERTELNO:         params[:phone],
+        OWNERTOWN:          params[:city],
+        OWNERZIP:           params[:zip_code],
+        PSPID:              ENV['PSPID'],
+        SUBSCRIPTION_ID:    @person.order_id,
+        SUB_AMOUNT:         params[:amount].to_i * 100,
+        SUB_COM:            "DonCapajRecurrent",
+        SUB_COMMENT:        'DonCapajRecurrent',
+        SUB_ENDDATE:        Date.new(2016,12,31),
+        SUB_ORDERID:        @person.order_id,
+        SUB_PERIOD_MOMENT:  5,
+        SUB_PERIOD_NUMBER:  1,
+        SUB_PERIOD_UNIT:    'm',
+        SUB_STARTDATE:      Date.today,
+        SUB_STATUS:         1,
+        TP:                 'template.html'
     }
   end
 
@@ -137,7 +135,7 @@ class OgoneController < ApplicationController
     Rails.logger.info
     Rails.logger.info "###########################################"
 
-    render :nothing => true, :status => 301 unless digest == params['SHASIGN']
+    render nothing: true, status: 301 unless digest == params['SHASIGN']
   end
 
   def get_person
